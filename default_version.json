@@ -1,0 +1,4867 @@
+{
+  "objects": [
+    {
+      "name": "default",
+      "description": "Default Version",
+      "locked": false,
+      "jobs": {
+        "objects": [
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15308,
+              "revision": 2,
+              "created": 1641903472576,
+              "timestamp": 1641903472576,
+              "components": {
+                "15309": {
+                  "id": 15309,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": -768,
+                  "y": -80,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15315
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15310": {
+                  "id": 15310,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -798585337,
+                  "x": -640,
+                  "y": -80,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15315
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15314
+                  ],
+                  "outputFailureConnectorIDs": [
+                    15316
+                  ],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Extract & Load into Raw"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "SQL Script",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "-- stage 'STAGE_AZURE' created using the storage integration made from snowflake on Azure blob storage.\n-- Copy the new data from blob storage to the raw layer.\n\n COPY INTO ${DB}.${RAW_SCHEMA}.${target_table} FROM (select $1,$2,\n $3,\n $4,\n $5,\n $6,\n $7,\n $8,\n $9,\n $10,\n $11,\n $12,\n $13,\n $14,\n TRY_CAST($15 AS INTEGER),\n $16,\n CURRENT_TIMESTAMP AS UPDATED_AT FROM @STAGE_AZURE)\n ON_ERROR=CONTINUE\n --PURGE=TRUE\n TRUNCATECOLUMNS=TRUE ;"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15311": {
+                  "id": 15311,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 515156205,
+                  "x": -368,
+                  "y": 16,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15316
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Failure 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15312": {
+                  "id": 15312,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "TRANSFORM",
+                  "implementationID": 1785813072,
+                  "x": -384,
+                  "y": -112,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15314
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [
+                    15317
+                  ],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Transform [ DBT ]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Orchestration Job",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Transform_raw_to_target_DBT"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Set Scalar Variables",
+                      "elements": {},
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Set Grid Variables",
+                      "elements": {},
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15313": {
+                  "id": 15313,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 515156205,
+                  "x": -224,
+                  "y": -48,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15317
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Failure 1"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {
+                "15314": {
+                  "id": 15314,
+                  "sourceID": 15310,
+                  "targetID": 15312
+                }
+              },
+              "failureConnectors": {
+                "15316": {
+                  "id": 15316,
+                  "sourceID": 15310,
+                  "targetID": 15311
+                },
+                "15317": {
+                  "id": 15317,
+                  "sourceID": 15312,
+                  "targetID": 15313
+                }
+              },
+              "unconditionalConnectors": {
+                "15315": {
+                  "id": 15315,
+                  "sourceID": 15309,
+                  "targetID": 15310
+                }
+              },
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {},
+              "noteConnectors": {},
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "variables": {
+                "target_table": {
+                  "definition": {
+                    "name": "target_table",
+                    "type": "TEXT",
+                    "scope": "BRANCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "TRIPS"
+                }
+              },
+              "grids": {}
+            },
+            "info": {
+              "id": 15308,
+              "name": "azure_to_snowflake",
+              "description": "",
+              "type": "ORCHESTRATION",
+              "tag": "6eb110c7-f890-4cef-95ec-78ac3db93333"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15318,
+              "revision": 2,
+              "created": 1641903472581,
+              "timestamp": 1641903472581,
+              "components": {
+                "15319": {
+                  "id": 15319,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": -768,
+                  "y": -16,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15328
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15320": {
+                  "id": 15320,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -1032749985,
+                  "x": -608,
+                  "y": -16,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15328
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15325
+                  ],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "LAST_INCREMENTAL_VALUE"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "SQL Query",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "/* Note: this query will be run as a subquery for the purposes of sampling the data.\n   As such it will be restricted by any subquery limitations specified by the current platform. */\n   \n   SELECT COALESCE(A.INCREMENTAL_COLUMN,B.INCREMENTAL_COLUMN) AS INCREMENTAL_COLUMN,\n\tCOALESCE(A.INCREMENTAL_VALUE,B.INCREMENTAL_VALUE) AS INCREMENTAL_VALUE FROM \n   (SELECT * FROM ${DB}.${SCHEMA}.CONTROL_FCR_APP WHERE JOB_NAME= '${JOB_NAME}') A\n   RIGHT JOIN\n   (SELECT '${JOB_NAME}' AS JOB_NAME,'${INCREMENTAL_COLUMN}' AS INCREMENTAL_COLUMN, '${INCREMENTAL_VALUE}' AS INCREMENTAL_VALUE) B\n   ON B.JOB_NAME = A.JOB_NAME"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "Scalar Variable Mapping",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "INCREMENTAL_COLUMN"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "INCREMENTAL_COLUMN"
+                            }
+                          }
+                        },
+                        "2": {
+                          "slot": 2,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "INCREMENTAL_VALUE"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "INCREMENTAL_VALUE"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Database",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "FCR_DEV"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Target Table",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CONTROL_FCR_APP"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "6": {
+                      "slot": 6,
+                      "name": "Table Columns",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "INCREMENTAL_COLUMN"
+                            }
+                          }
+                        },
+                        "2": {
+                          "slot": 2,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "INCREMENTAL_VALUE"
+                            }
+                          }
+                        },
+                        "3": {
+                          "slot": 3,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "JOB_NAME"
+                            }
+                          }
+                        },
+                        "4": {
+                          "slot": 4,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "IS_INCREMENTAL"
+                            }
+                          }
+                        },
+                        "5": {
+                          "slot": 5,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "LAST_UPDATED"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "7": {
+                      "slot": 7,
+                      "name": "Schema",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "PUBLIC"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "10": {
+                      "slot": 10,
+                      "name": "Limit",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "INTEGER",
+                              "value": "100"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "11": {
+                      "slot": 11,
+                      "name": "Order By",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "12": {
+                      "slot": 12,
+                      "name": "Sort",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Ascending"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "13": {
+                      "slot": 13,
+                      "name": "Filter Conditions",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "JOB_NAME"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "Is"
+                            },
+                            "3": {
+                              "slot": 3,
+                              "type": "STRING",
+                              "value": "Equal to"
+                            },
+                            "4": {
+                              "slot": 4,
+                              "type": "STRING",
+                              "value": "AZURE_TO_SNOWFLAKE"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "14": {
+                      "slot": 14,
+                      "name": "Combine Conditions",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "AND"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "20": {
+                      "slot": 20,
+                      "name": "Basic / Advanced",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Advanced"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15321": {
+                  "id": 15321,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -798585337,
+                  "x": -448,
+                  "y": -16,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15325
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15326
+                  ],
+                  "outputFailureConnectorIDs": [
+                    15329
+                  ],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "TRANSFORMATION_INTO_TRIPS"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "SQL Script",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "INSERT INTO ${DB}.${TARGET_SCHEMA}.${TARGET_TABLE} select\nTRIPDURATION,\nSTARTTIME,\nSTOPTIME,\nSTART_STATION_ID,\nSTART_STATION_NAME,\nSTART_STATION_LATITUDE,\nSTART_STATION_LONGITUDE,\nEND_STATION_ID,\nEND_STATION_NAME,\nEND_STATION_LATITUDE,\nEND_STATION_LONGITUDE,\nBIKEID,\nMEMBERSHIP_TYPE,\nUSERTYPE,\nBIRTH_YEAR,\n(case when GENDER = '1' THEN 'M' when GENDER = '2' THEN 'F' ELSE NULL END) as GENDER,\nupdated_at\nFROM ${DB}.${SOURCE_SCHEMA}.${SOURCE_TABLE_1}"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15322": {
+                  "id": 15322,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 515156205,
+                  "x": -245,
+                  "y": 32,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15329
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Failure 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15323": {
+                  "id": 15323,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -1032749985,
+                  "x": -256,
+                  "y": -64,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15326
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15327
+                  ],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "LATEST_INCREMENTAL_VALUE"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "SQL Query",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "/* Note: this query will be run as a subquery for the purposes of sampling the data.\n   As such it will be restricted by any subquery limitations specified by the current platform. */\n   \n--   SELECT COALESCE(MAX(${INCREMENTAL_COLUMN}), '${INCREMENTAL_VALUE}') AS INCREMENTAL_VALUE \n   SELECT COALESCE(MAX(${INCREMENTAL_COLUMN}), '${INCREMENTAL_VALUE}' ) AS INCREMENTAL_VALUE \n   FROM ${DB}.${TARGET_SCHEMA}.${TARGET_TABLE} \n   WHERE ${INCREMENTAL_COLUMN} > '${INCREMENTAL_VALUE}'"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "Scalar Variable Mapping",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "INCREMENTAL_VALUE"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "INCREMENTAL_VALUE"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Database",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "[Environment Default]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Target Table",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "6": {
+                      "slot": 6,
+                      "name": "Table Columns",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "7": {
+                      "slot": 7,
+                      "name": "Schema",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "[Environment Default]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "10": {
+                      "slot": 10,
+                      "name": "Limit",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "INTEGER",
+                              "value": "100"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "11": {
+                      "slot": 11,
+                      "name": "Order By",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "12": {
+                      "slot": 12,
+                      "name": "Sort",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Ascending"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "13": {
+                      "slot": 13,
+                      "name": "Filter Conditions",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "14": {
+                      "slot": 14,
+                      "name": "Combine Conditions",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "AND"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "20": {
+                      "slot": 20,
+                      "name": "Basic / Advanced",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Advanced"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15324": {
+                  "id": 15324,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -798585337,
+                  "x": -96,
+                  "y": -64,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15327
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "UPDATE_CONTROL_TABLE"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "SQL Script",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "MERGE INTO ${DB}.${SCHEMA}.CONTROL_FCR_APP C USING (\n  SELECT '${JOB_NAME}' AS JOB_NAME,\n  '${IS_INCREMENTAL}' AS IS_INCREMENTAL,\n  '${INCREMENTAL_COLUMN}' AS INCREMENTAL_COLUMN,\n  TO_TIMESTAMP_NTZ('${INCREMENTAL_VALUE}') AS INCREMENTAL_VALUE,\n  CURRENT_TIMESTAMP() AS LAST_UPDATED) AS N ON N.JOB_NAME = C.JOB_NAME\nWHEN MATCHED THEN UPDATE SET C.INCREMENTAL_VALUE = N.INCREMENTAL_VALUE\nWHEN NOT MATCHED THEN INSERT (JOB_NAME,IS_INCREMENTAL,INCREMENTAL_COLUMN,INCREMENTAL_VALUE,LAST_UPDATED) \n\tVALUES (N.JOB_NAME,N.IS_INCREMENTAL,N.INCREMENTAL_COLUMN,N.INCREMENTAL_VALUE,N.LAST_UPDATED)\n  "
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {
+                "15325": {
+                  "id": 15325,
+                  "sourceID": 15320,
+                  "targetID": 15321
+                },
+                "15326": {
+                  "id": 15326,
+                  "sourceID": 15321,
+                  "targetID": 15323
+                },
+                "15327": {
+                  "id": 15327,
+                  "sourceID": 15323,
+                  "targetID": 15324
+                }
+              },
+              "failureConnectors": {
+                "15329": {
+                  "id": 15329,
+                  "sourceID": 15321,
+                  "targetID": 15322
+                }
+              },
+              "unconditionalConnectors": {
+                "15328": {
+                  "id": 15328,
+                  "sourceID": 15319,
+                  "targetID": 15320
+                }
+              },
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {},
+              "noteConnectors": {},
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "variables": {
+                "JOB_NAME": {
+                  "definition": {
+                    "name": "JOB_NAME",
+                    "type": "TEXT",
+                    "scope": "BRANCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "AZURE_TO_SNOWFLAKE"
+                },
+                "LAST_UPDATED": {
+                  "definition": {
+                    "name": "LAST_UPDATED",
+                    "type": "TEXT",
+                    "scope": "TASKBATCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "CURRENT_TIMESTAMP()"
+                },
+                "TARGET_TABLE": {
+                  "definition": {
+                    "name": "TARGET_TABLE",
+                    "type": "TEXT",
+                    "scope": "BRANCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "TRIPS"
+                },
+                "SOURCE_SCHEMA": {
+                  "definition": {
+                    "name": "SOURCE_SCHEMA",
+                    "type": "TEXT",
+                    "scope": "BRANCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "RAW"
+                },
+                "TARGET_SCHEMA": {
+                  "definition": {
+                    "name": "TARGET_SCHEMA",
+                    "type": "TEXT",
+                    "scope": "BRANCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "PUBLIC"
+                },
+                "IS_INCREMENTAL": {
+                  "definition": {
+                    "name": "IS_INCREMENTAL",
+                    "type": "TEXT",
+                    "scope": "TASKBATCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "Y"
+                },
+                "SOURCE_TABLE_1": {
+                  "definition": {
+                    "name": "SOURCE_TABLE_1",
+                    "type": "TEXT",
+                    "scope": "BRANCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "TRIPS"
+                },
+                "INCREMENTAL_VALUE": {
+                  "definition": {
+                    "name": "INCREMENTAL_VALUE",
+                    "type": "TEXT",
+                    "scope": "TASKBATCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "1900-01-01 00:00:00"
+                },
+                "INCREMENTAL_COLUMN": {
+                  "definition": {
+                    "name": "INCREMENTAL_COLUMN",
+                    "type": "TEXT",
+                    "scope": "BRANCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "UPDATED_AT"
+                }
+              },
+              "grids": {
+                "control_table_cols": {
+                  "definition": {
+                    "name": "control_table_cols",
+                    "scope": "BRANCH",
+                    "definitions": [
+                      {
+                        "name": "name",
+                        "type": "TEXT"
+                      },
+                      {
+                        "name": "type",
+                        "type": "TEXT"
+                      },
+                      {
+                        "name": "default",
+                        "type": "TEXT"
+                      }
+                    ],
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "values": [
+                    {
+                      "values": [
+                        "JOB_NAME",
+                        "STRING",
+                        "SAMPLE"
+                      ]
+                    },
+                    {
+                      "values": [
+                        "IS_INCREMENTAL",
+                        "STRING",
+                        "SAMPLE"
+                      ]
+                    },
+                    {
+                      "values": [
+                        "INCREMENTAL_COLUMN",
+                        "STRING",
+                        "SAMPLE"
+                      ]
+                    },
+                    {
+                      "values": [
+                        "INCREMENTAL_VALUE",
+                        "STRING",
+                        "SAMPLE"
+                      ]
+                    },
+                    {
+                      "values": [
+                        "LAST_UPDATED",
+                        "TIMESTAMP",
+                        "NULL"
+                      ]
+                    }
+                  ]
+                },
+                "control_table_output": {
+                  "definition": {
+                    "name": "control_table_output",
+                    "scope": "TASKBATCH",
+                    "definitions": [
+                      {
+                        "name": "JOB_NAME",
+                        "type": "TEXT"
+                      },
+                      {
+                        "name": "IS_INCREMENTAL",
+                        "type": "TEXT"
+                      },
+                      {
+                        "name": "INCREMENTAL_COLUMN",
+                        "type": "TEXT"
+                      },
+                      {
+                        "name": "INCREMENTAL_VALUE",
+                        "type": "TEXT"
+                      },
+                      {
+                        "name": "UPDATED_AT",
+                        "type": "TEXT"
+                      }
+                    ],
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "values": [
+                    {
+                      "values": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "info": {
+              "id": 15318,
+              "name": "Transform_raw_to_target_Matillion",
+              "description": "Transformation from raw data layer to target layer Using Matillion.",
+              "type": "ORCHESTRATION",
+              "tag": "88491023-4ab1-456e-9be6-00d04d4c04dc"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15330,
+              "revision": 2,
+              "created": 1641903472587,
+              "timestamp": 1641903472587,
+              "components": {
+                "15331": {
+                  "id": 15331,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": -656,
+                  "y": -48,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15333
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15332": {
+                  "id": 15332,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -30576485,
+                  "x": -492,
+                  "y": -36,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15333
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Bash Script 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Script",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "###\n# change directory to the dbt project directory\n# Model profile should be added to /home/ngpoc/dbt/profiles.yml  \n# selected project models are invoked using --select , space delimited for multiple models.\n# logs/target/dbt_modules are mounted to the matillion host locations under /home/ngpoc/dbt\n###\n\n\ncd /home/ngpoc/data-pipeline/transform/fcr_app \n\necho \"DBT PROJECT LOCATION : $PWD\"\n\ndocker run --rm -e DBT_PROFILES_DIR=/profile \\\n--name Transform_azure_data \\\n-w /app \\\n-v /home/ngpoc/dbt:/profile \\\n-v $PWD:/app \\\n-v dbt_logs:/app/logs \\\n-v dbt_target:/app/target \\\n-v dbt_modules:/app/dbt_modules \\\n-i fishtownanalytics/dbt:0.21.1rc2 \\\nrun --select fcr_app.staging fcr_app.public\n\n\necho \"Exit Status : $?\""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "Timeout",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "INTEGER",
+                              "value": "360"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "User",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Restricted"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {},
+              "failureConnectors": {},
+              "unconditionalConnectors": {
+                "15333": {
+                  "id": 15333,
+                  "sourceID": 15331,
+                  "targetID": 15332
+                }
+              },
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {},
+              "noteConnectors": {},
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "variables": {},
+              "grids": {}
+            },
+            "info": {
+              "id": 15330,
+              "name": "Transform_raw_to_target_DBT",
+              "description": "Transformation through DBT. Selected models to be invoked from Matillion using docker .",
+              "type": "ORCHESTRATION",
+              "tag": "46a51d5b-3a58-41b7-80c2-af3fceb35637"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15334,
+              "revision": 2,
+              "created": 1641903472591,
+              "timestamp": 1641903472591,
+              "components": {
+                "15335": {
+                  "id": 15335,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": -272,
+                  "y": 0,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15343
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15336": {
+                  "id": 15336,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -798585337,
+                  "x": -133,
+                  "y": -1,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15343
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15341
+                  ],
+                  "outputFailureConnectorIDs": [
+                    15344
+                  ],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Extract & Load from Azure blob"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "SQL Script",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "-- stage 'STAGE_AZURE' created using the storage integration made from snowflake on Azure blob storage.\n-- Copy the new data from blob storage to the raw layer.\n\n COPY INTO ${DB}.${RAW_SCHEMA}.${target_table} FROM (select $1,$2,\n $3,\n $4,\n $5,\n $6,\n $7,\n $8,\n $9,\n $10,\n $11,\n $12,\n $13,\n $14,\n TRY_CAST($15 AS INTEGER),\n $16,\n CURRENT_TIMESTAMP AS UPDATED_AT FROM @STAGE_AZURE)\n ON_ERROR=CONTINUE\n --PURGE=TRUE\n TRUNCATECOLUMNS=TRUE ;"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15337": {
+                  "id": 15337,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 515156205,
+                  "x": 64,
+                  "y": 64,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15344
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Failure 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15338": {
+                  "id": 15338,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "TRANSFORM",
+                  "implementationID": 1785813072,
+                  "x": 48,
+                  "y": -32,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15341
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15342
+                  ],
+                  "outputFailureConnectorIDs": [
+                    15345
+                  ],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Transform_raw_to_target_Matillion"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Orchestration Job",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Transform_raw_to_target_Matillion"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Set Scalar Variables",
+                      "elements": {},
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Set Grid Variables",
+                      "elements": {},
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15339": {
+                  "id": 15339,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": -1946388514,
+                  "x": 240,
+                  "y": -96,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15342
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Success 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15340": {
+                  "id": 15340,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 515156205,
+                  "x": 256,
+                  "y": 0,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15345
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Failure 1"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {
+                "15341": {
+                  "id": 15341,
+                  "sourceID": 15336,
+                  "targetID": 15338
+                },
+                "15342": {
+                  "id": 15342,
+                  "sourceID": 15338,
+                  "targetID": 15339
+                }
+              },
+              "failureConnectors": {
+                "15344": {
+                  "id": 15344,
+                  "sourceID": 15336,
+                  "targetID": 15337
+                },
+                "15345": {
+                  "id": 15345,
+                  "sourceID": 15338,
+                  "targetID": 15340
+                }
+              },
+              "unconditionalConnectors": {
+                "15343": {
+                  "id": 15343,
+                  "sourceID": 15335,
+                  "targetID": 15336
+                }
+              },
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {},
+              "noteConnectors": {},
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "variables": {
+                "target_table": {
+                  "definition": {
+                    "name": "target_table",
+                    "type": "TEXT",
+                    "scope": "BRANCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "TRIPS"
+                }
+              },
+              "grids": {}
+            },
+            "info": {
+              "id": 15334,
+              "name": "azure_to_snowflake_matillion",
+              "type": "ORCHESTRATION",
+              "tag": "f83d1a85-9e8e-441e-8fbb-25563f91def0"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15346,
+              "revision": 2,
+              "created": 1641903472597,
+              "timestamp": 1641903472597,
+              "components": {
+                "15348": {
+                  "id": 15348,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": -528,
+                  "y": -128,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15365
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15349": {
+                  "id": 15349,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "ITERATE",
+                  "implementationID": -424773870,
+                  "x": -400,
+                  "y": -128,
+                  "width": 32,
+                  "height": 16,
+                  "inputConnectorIDs": [
+                    15365
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15364
+                  ],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Iterations over Source Stages"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "Grid Variable",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Iterate_table_containerPath"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Grid Variable Mapping",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "TARGET_TABLE"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "target"
+                            }
+                          }
+                        },
+                        "2": {
+                          "slot": 2,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CONTAINER_PATH"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "path"
+                            }
+                          }
+                        },
+                        "3": {
+                          "slot": 3,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "STAGE"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "stage"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Break on Failure",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "No"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "6": {
+                      "slot": 6,
+                      "name": "Concurrency",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Sequential"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "7": {
+                      "slot": 7,
+                      "name": "Stop on Condition",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "No"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "8": {
+                      "slot": 8,
+                      "name": "Mode",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Simple"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "9": {
+                      "slot": 9,
+                      "name": "Condition",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "10": {
+                      "slot": 10,
+                      "name": "Combine Conditions",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "And"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "11": {
+                      "slot": 11,
+                      "name": "Condition",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "999": {
+                      "slot": 999,
+                      "name": "Record Values In Task History",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Yes"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [
+                    15367
+                  ],
+                  "inputIterationConnectorIDs": []
+                },
+                "15350": {
+                  "id": 15350,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -798585337,
+                  "x": -400,
+                  "y": -96,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "COPY into Raw Layer"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "SQL Script",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "COPY INTO ${DB}.${job_schema}.${target} FROM @${stage}${path}"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": [
+                    15367
+                  ]
+                },
+                "15360": {
+                  "id": 15360,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "TRANSFORM",
+                  "implementationID": 1785813072,
+                  "x": -224,
+                  "y": -128,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15364
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15363
+                  ],
+                  "outputFailureConnectorIDs": [
+                    15366
+                  ],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Transform_Calabrio_dbt"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Orchestration Job",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Transform_Calabrio_dbt"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Set Scalar Variables",
+                      "elements": {},
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Set Grid Variables",
+                      "elements": {},
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15361": {
+                  "id": 15361,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 515156205,
+                  "x": -64,
+                  "y": -64,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15366
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Failure 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15362": {
+                  "id": 15362,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": -1946388514,
+                  "x": -82,
+                  "y": -173,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15363
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Success 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {
+                "15363": {
+                  "id": 15363,
+                  "sourceID": 15360,
+                  "targetID": 15362
+                },
+                "15364": {
+                  "id": 15364,
+                  "sourceID": 15349,
+                  "targetID": 15360
+                }
+              },
+              "failureConnectors": {
+                "15366": {
+                  "id": 15366,
+                  "sourceID": 15360,
+                  "targetID": 15361
+                }
+              },
+              "unconditionalConnectors": {
+                "15365": {
+                  "id": 15365,
+                  "sourceID": 15348,
+                  "targetID": 15349
+                }
+              },
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {
+                "15367": {
+                  "id": 15367,
+                  "sourceID": 15349,
+                  "targetID": 15350
+                }
+              },
+              "noteConnectors": {},
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {
+                "15347": {
+                  "id": 15347,
+                  "x": -472,
+                  "y": -236,
+                  "width": 148,
+                  "height": 132,
+                  "text": "**Iteration over the grid variables.**\n\n**User input :**\n   target_table\n   container path if neccessary\n   stage.\n",
+                  "colour": "e6e63c"
+                }
+              },
+              "variables": {
+                "path": {
+                  "definition": {
+                    "name": "path",
+                    "type": "TEXT",
+                    "scope": "TASKBATCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "/"
+                },
+                "stage": {
+                  "definition": {
+                    "name": "stage",
+                    "type": "TEXT",
+                    "scope": "TASKBATCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": ""
+                },
+                "target": {
+                  "definition": {
+                    "name": "target",
+                    "type": "TEXT",
+                    "scope": "TASKBATCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "CALABRIO_RAW"
+                },
+                "job_schema": {
+                  "definition": {
+                    "name": "job_schema",
+                    "type": "TEXT",
+                    "scope": "TASKBATCH",
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "value": "${RAW_SCHEMA}"
+                }
+              },
+              "grids": {
+                "Iterate_table_containerPath": {
+                  "definition": {
+                    "name": "Iterate_table_containerPath",
+                    "scope": "BRANCH",
+                    "definitions": [
+                      {
+                        "name": "TARGET_TABLE",
+                        "type": "TEXT"
+                      },
+                      {
+                        "name": "CONTAINER_PATH",
+                        "type": "TEXT"
+                      },
+                      {
+                        "name": "STAGE",
+                        "type": "TEXT"
+                      }
+                    ],
+                    "description": "",
+                    "visibility": "PUBLIC"
+                  },
+                  "values": [
+                    {
+                      "values": [
+                        "CALABRIO_RAW",
+                        "",
+                        "${DB}.${SCHEMA}.STAGE_AZURE_FCR_MOCK"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "info": {
+              "id": 15346,
+              "name": "Calabrio_azure_to_snowflake",
+              "type": "ORCHESTRATION",
+              "tag": "05b1c4f1-4c1c-446e-b065-1bf87891f94f"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15368,
+              "revision": 2,
+              "created": 1641903472602,
+              "timestamp": 1641903472602,
+              "components": {
+                "15369": {
+                  "id": 15369,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": -144,
+                  "y": 0,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15371
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15370": {
+                  "id": 15370,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -30576485,
+                  "x": -21,
+                  "y": 4,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15371
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Bash Script 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Script",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "###\n# Variables are exported into bash, but should be considered read-only: \n#    echo $myvar\n###\n\n\ncd /home/ngpoc/data-pipeline/transform/fcr_app \n\necho \"DBT PROJECT LOCATION : $PWD\"\n\ndocker run --rm -e DBT_PROFILES_DIR=/profile \\\n--name Transform_calabrio \\\n-w /app \\\n-v /home/ngpoc/dbt:/profile \\\n-v $PWD:/app \\\n-v dbt_logs:/app/logs \\\n-v dbt_target:/app/target \\\n-v dbt_modules:/app/dbt_modules \\\n-i fishtownanalytics/dbt:0.21.1rc2 \\\nrun --select fcr_app.staging.stg_agent_details fcr_app.public.agent_details\n\n\necho \"Exit Status : $?\""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "Timeout",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "INTEGER",
+                              "value": "360"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "User",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Restricted"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {},
+              "failureConnectors": {},
+              "unconditionalConnectors": {
+                "15371": {
+                  "id": 15371,
+                  "sourceID": 15369,
+                  "targetID": 15370
+                }
+              },
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {},
+              "noteConnectors": {},
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "variables": {},
+              "grids": {}
+            },
+            "info": {
+              "id": 15368,
+              "name": "Transform_Calabrio_dbt",
+              "type": "ORCHESTRATION",
+              "tag": "12f4267d-799d-4c2e-bcfc-1656418a48db"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15372,
+              "revision": 2,
+              "created": 1641903472605,
+              "timestamp": 1641903472605,
+              "components": {
+                "15373": {
+                  "id": 15373,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": -320,
+                  "y": 0,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15380
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15374": {
+                  "id": 15374,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "TRANSFORM",
+                  "implementationID": 1896325668,
+                  "x": 80,
+                  "y": 0,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15379
+                  ],
+                  "outputSuccessConnectorIDs": [
+                    15378
+                  ],
+                  "outputFailureConnectorIDs": [
+                    15381
+                  ],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Calabrio_Tranform"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Transformation Job",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Tranform_Raw_To_Transformed_Calabrio"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Set Scalar Variables",
+                      "elements": {},
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Set Grid Variables",
+                      "elements": {},
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15375": {
+                  "id": 15375,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": 1989138124,
+                  "x": -176,
+                  "y": 0,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15380
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15379
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Load Raw Calabrio data from Azure Storage"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Azure Storage Location",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "azure://fcrstorageaccounts/calabrio-mock-data/"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Warehouse",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "[Environment Default]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "6": {
+                      "slot": 6,
+                      "name": "Database",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "FCR_DEV"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "7": {
+                      "slot": 7,
+                      "name": "Schema",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "RAW"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "8": {
+                      "slot": 8,
+                      "name": "Target Table",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CALABRIO_RAW"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "9": {
+                      "slot": 9,
+                      "name": "Load Columns",
+                      "elements": {},
+                      "visible": true
+                    },
+                    "10": {
+                      "slot": 10,
+                      "name": "Format",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "[Custom]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "11": {
+                      "slot": 11,
+                      "name": "File Type",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CSV"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "12": {
+                      "slot": 12,
+                      "name": "Compression",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "AUTO"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "20": {
+                      "slot": 20,
+                      "name": "Record Delimiter",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "21": {
+                      "slot": 21,
+                      "name": "Field Delimiter",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ","
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "22": {
+                      "slot": 22,
+                      "name": "Skip Header",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "1"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "23": {
+                      "slot": 23,
+                      "name": "Date Format",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "24": {
+                      "slot": 24,
+                      "name": "Time Format",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "25": {
+                      "slot": 25,
+                      "name": "Timestamp Format",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "26": {
+                      "slot": 26,
+                      "name": "",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "27": {
+                      "slot": 27,
+                      "name": "Escape",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "28": {
+                      "slot": 28,
+                      "name": "Escape Unenclosed Field",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "29": {
+                      "slot": 29,
+                      "name": "Trim Space",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "30": {
+                      "slot": 30,
+                      "name": "Field Optionally Enclosed",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "31": {
+                      "slot": 31,
+                      "name": "Null If",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "32": {
+                      "slot": 32,
+                      "name": "Error On Column Count Mismatch",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "33": {
+                      "slot": 33,
+                      "name": "Empty Field as Null",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "34": {
+                      "slot": 34,
+                      "name": "Encoding Type",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "35": {
+                      "slot": 35,
+                      "name": "Skip Blank Lines",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "36": {
+                      "slot": 36,
+                      "name": "Replace Invalid Characters",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "40": {
+                      "slot": 40,
+                      "name": "Enable Octal",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "41": {
+                      "slot": 41,
+                      "name": "Allow Duplicates",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "42": {
+                      "slot": 42,
+                      "name": "Strip Outer Array",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "43": {
+                      "slot": 43,
+                      "name": "Strip Null Values",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "44": {
+                      "slot": 44,
+                      "name": "Ignore UTF8 Errors",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "45": {
+                      "slot": 45,
+                      "name": "Nest Columns",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "46": {
+                      "slot": 46,
+                      "name": "Null If",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "47": {
+                      "slot": 47,
+                      "name": "Trim Space",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "50": {
+                      "slot": 50,
+                      "name": "Null If",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "51": {
+                      "slot": 51,
+                      "name": "Trim Space",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "60": {
+                      "slot": 60,
+                      "name": "Ignore UTF8 Errors",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "61": {
+                      "slot": 61,
+                      "name": "Preserve Space",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "62": {
+                      "slot": 62,
+                      "name": "Strip Outer Element",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "63": {
+                      "slot": 63,
+                      "name": "Disable Snowflake Data",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "64": {
+                      "slot": 64,
+                      "name": "Disable Auto Convert",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "66": {
+                      "slot": 66,
+                      "name": "Null If",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "67": {
+                      "slot": 67,
+                      "name": "Trim Space",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "70": {
+                      "slot": 70,
+                      "name": "Null If",
+                      "elements": {},
+                      "visible": false
+                    },
+                    "71": {
+                      "slot": 71,
+                      "name": "Trim Space",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "105": {
+                      "slot": 105,
+                      "name": "Authentication",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Credentials"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "106": {
+                      "slot": 106,
+                      "name": "Storage Integration",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "120": {
+                      "slot": 120,
+                      "name": "On Error",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Abort Statement"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "121": {
+                      "slot": 121,
+                      "name": "n",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "INTEGER",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "122": {
+                      "slot": 122,
+                      "name": "Size Limit (B)",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "INTEGER",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "123": {
+                      "slot": 123,
+                      "name": "Purge Files",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "124": {
+                      "slot": 124,
+                      "name": "Truncate Columns",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "125": {
+                      "slot": 125,
+                      "name": "Force Load",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "False"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "126": {
+                      "slot": 126,
+                      "name": "Match By Column Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "None"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    },
+                    "200": {
+                      "slot": 200,
+                      "name": "Stage",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "[Custom]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "201": {
+                      "slot": 201,
+                      "name": "Pattern",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "yyyy=2021/mm=12/dd=29/mockfile"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "203": {
+                      "slot": 203,
+                      "name": "Metadata Fields",
+                      "elements": {},
+                      "visible": false
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15376": {
+                  "id": 15376,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": -1946388514,
+                  "x": 288,
+                  "y": -48,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15378
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Success 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15377": {
+                  "id": 15377,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 515156205,
+                  "x": 288,
+                  "y": 80,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15381
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "End Failure 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {
+                "15378": {
+                  "id": 15378,
+                  "sourceID": 15374,
+                  "targetID": 15376
+                }
+              },
+              "failureConnectors": {
+                "15381": {
+                  "id": 15381,
+                  "sourceID": 15374,
+                  "targetID": 15377
+                }
+              },
+              "unconditionalConnectors": {
+                "15379": {
+                  "id": 15379,
+                  "sourceID": 15375,
+                  "targetID": 15374
+                },
+                "15380": {
+                  "id": 15380,
+                  "sourceID": 15373,
+                  "targetID": 15375
+                }
+              },
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {},
+              "noteConnectors": {},
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "variables": {},
+              "grids": {}
+            },
+            "info": {
+              "id": 15372,
+              "name": "Calabrio_Azure_to_Snowflake_Transformed_v2",
+              "description": "",
+              "type": "ORCHESTRATION",
+              "tag": "34e2531b-eb05-461d-ba94-104d8cd5271b"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15537,
+              "revision": 8,
+              "created": 1641982139665,
+              "timestamp": 1641982139665,
+              "components": {
+                "15538": {
+                  "id": 15538,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": 0,
+                  "y": 0,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [
+                    15543
+                  ],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                },
+                "15542": {
+                  "id": 15542,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "SUCCESS_FAIL",
+                  "executionHint": "EXECUTE",
+                  "implementationID": -30576485,
+                  "x": 112,
+                  "y": 9,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15543
+                  ],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Bash Script 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Script",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "###\n# Variables are exported into bash, but should be considered read-only: \n#    echo $myvar\n###\n\n\necho 'version 1'"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "Timeout",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "INTEGER",
+                              "value": "360"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "User",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Restricted"
+                            }
+                          }
+                        }
+                      },
+                      "visible": false
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {},
+              "failureConnectors": {},
+              "unconditionalConnectors": {
+                "15543": {
+                  "id": 15543,
+                  "sourceID": 15538,
+                  "targetID": 15542
+                }
+              },
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {},
+              "noteConnectors": {},
+              "canUndo": true,
+              "undoCommand": "Set Parameter",
+              "undoCreated": 1641982139305,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "variables": {},
+              "grids": {}
+            },
+            "info": {
+              "id": 15537,
+              "name": "sleep",
+              "type": "ORCHESTRATION",
+              "tag": "f552ac58-fa44-4924-bc8a-c284bf6d16b6"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".OrchestrationJob",
+              "id": 15564,
+              "revision": 3,
+              "created": 1641982681128,
+              "timestamp": 1641982681128,
+              "components": {
+                "15565": {
+                  "id": 15565,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "connectorHint": "UNCONDITIONAL",
+                  "executionHint": "FLOW",
+                  "implementationID": 444132438,
+                  "x": 0,
+                  "y": 0,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputSuccessConnectorIDs": [],
+                  "outputFailureConnectorIDs": [],
+                  "outputUnconditionalConnectorIDs": [],
+                  "outputTrueConnectorIDs": [],
+                  "outputFalseConnectorIDs": [],
+                  "exportMappings": {},
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Start",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Start 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "activationStatus": "ENABLED",
+                  "outputIterationConnectorIDs": [],
+                  "inputIterationConnectorIDs": []
+                }
+              },
+              "successConnectors": {},
+              "failureConnectors": {},
+              "unconditionalConnectors": {},
+              "trueConnectors": {},
+              "falseConnectors": {},
+              "iterationConnectors": {},
+              "noteConnectors": {},
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "variables": {},
+              "grids": {}
+            },
+            "info": {
+              "id": 15564,
+              "name": "test_job",
+              "type": "ORCHESTRATION",
+              "tag": "91f1bee7-6dec-497f-9aa4-13ee7ed217ec"
+            },
+            "path": []
+          },
+          {
+            "jobObject": {
+              "JobType": ".TransformationJob",
+              "id": 15382,
+              "revision": 2,
+              "created": 1641903472610,
+              "timestamp": 1641903472610,
+              "components": {
+                "15383": {
+                  "id": 15383,
+                  "inputCardinality": "ZERO",
+                  "outputCardinality": "MANY",
+                  "implementationID": 1354890871,
+                  "x": -48,
+                  "y": 128,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [],
+                  "outputConnectorIDs": [
+                    15386,
+                    15387
+                  ],
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CALABRIO_TRANSFORMED"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Target Table",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CALABRIO_RAW"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "Column Names",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "User ID"
+                            }
+                          }
+                        },
+                        "2": {
+                          "slot": 2,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Email"
+                            }
+                          }
+                        },
+                        "3": {
+                          "slot": 3,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "First Name"
+                            }
+                          }
+                        },
+                        "4": {
+                          "slot": 4,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Last Name"
+                            }
+                          }
+                        },
+                        "5": {
+                          "slot": 5,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Team"
+                            }
+                          }
+                        },
+                        "6": {
+                          "slot": 6,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "ACD ID"
+                            }
+                          }
+                        },
+                        "7": {
+                          "slot": 7,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Skill Mapping"
+                            }
+                          }
+                        },
+                        "8": {
+                          "slot": 8,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "DeActivated"
+                            }
+                          }
+                        },
+                        "9": {
+                          "slot": 9,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Department Start Date"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Schema",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "RAW"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "6": {
+                      "slot": 6,
+                      "name": "Database",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "FCR_DEV"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "7": {
+                      "slot": 7,
+                      "name": "Offset",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "INTEGER",
+                              "value": ""
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "exportMappings": {},
+                  "activationStatus": "ENABLED"
+                },
+                "15384": {
+                  "id": 15384,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "implementationID": -319648201,
+                  "x": 208,
+                  "y": 128,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15386
+                  ],
+                  "outputConnectorIDs": [],
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Create View 0"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Schema",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "PUBLIC"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "3": {
+                      "slot": 3,
+                      "name": "View Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CALABRIO_TRANSFORMED_VIEW_2"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Database",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "FCR_DEV"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "6": {
+                      "slot": 6,
+                      "name": "Secure View",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Yes"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "7": {
+                      "slot": 7,
+                      "name": "View Type",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Standard"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    }
+                  },
+                  "exportMappings": {},
+                  "activationStatus": "ENABLED"
+                },
+                "15385": {
+                  "id": 15385,
+                  "inputCardinality": "ONE",
+                  "outputCardinality": "ZERO",
+                  "implementationID": 211954775,
+                  "x": 212,
+                  "y": 257,
+                  "width": 32,
+                  "height": 32,
+                  "inputConnectorIDs": [
+                    15387
+                  ],
+                  "outputConnectorIDs": [],
+                  "parameters": {
+                    "1": {
+                      "slot": 1,
+                      "name": "Name",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CALABRIO"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "2": {
+                      "slot": 2,
+                      "name": "Target Table",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "CALABRIO"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "4": {
+                      "slot": 4,
+                      "name": "Column Mapping",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "User ID"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "User ID"
+                            }
+                          }
+                        },
+                        "2": {
+                          "slot": 2,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Email"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "Email"
+                            }
+                          }
+                        },
+                        "3": {
+                          "slot": 3,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "First Name"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "First Name"
+                            }
+                          }
+                        },
+                        "4": {
+                          "slot": 4,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Last Name"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "Last Name"
+                            }
+                          }
+                        },
+                        "5": {
+                          "slot": 5,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Team"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "Team"
+                            }
+                          }
+                        },
+                        "6": {
+                          "slot": 6,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "ACD ID"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "ACD ID"
+                            }
+                          }
+                        },
+                        "7": {
+                          "slot": 7,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Skill Mapping"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "Skill Mapping"
+                            }
+                          }
+                        },
+                        "8": {
+                          "slot": 8,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "DeActivated"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "DeActivated"
+                            }
+                          }
+                        },
+                        "9": {
+                          "slot": 9,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Department Start Date"
+                            },
+                            "2": {
+                              "slot": 2,
+                              "type": "STRING",
+                              "value": "Department Start Date"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "5": {
+                      "slot": 5,
+                      "name": "Truncate",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "Append"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "200": {
+                      "slot": 200,
+                      "name": "Schema",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "[Environment Default]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "201": {
+                      "slot": 201,
+                      "name": "Database",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "[Environment Default]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "202": {
+                      "slot": 202,
+                      "name": "Warehouse",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "[Environment Default]"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "203": {
+                      "slot": 203,
+                      "name": "Fix Data Type Mismatches",
+                      "elements": {
+                        "1": {
+                          "slot": 1,
+                          "values": {
+                            "1": {
+                              "slot": 1,
+                              "type": "STRING",
+                              "value": "No"
+                            }
+                          }
+                        }
+                      },
+                      "visible": true
+                    },
+                    "204": {
+                      "slot": 204,
+                      "name": "Order By",
+                      "elements": {},
+                      "visible": true
+                    }
+                  },
+                  "exportMappings": {},
+                  "activationStatus": "ENABLED"
+                }
+              },
+              "connectors": {
+                "15386": {
+                  "id": 15386,
+                  "sourceID": 15383,
+                  "targetID": 15384
+                },
+                "15387": {
+                  "id": 15387,
+                  "sourceID": 15383,
+                  "targetID": 15385
+                }
+              },
+              "canUndo": false,
+              "undoCommand": "",
+              "undoCreated": -1,
+              "canRedo": false,
+              "redoCommand": "",
+              "redoCreated": -1,
+              "notes": {},
+              "noteConnectors": {},
+              "variables": {},
+              "grids": {}
+            },
+            "info": {
+              "id": 15382,
+              "name": "Tranform_Raw_To_Transformed_Calabrio",
+              "description": "",
+              "type": "TRANSFORMATION",
+              "tag": "c41798c7-a179-45bf-b31d-7c1947c0fa2f"
+            },
+            "path": []
+          }
+        ],
+        "version": "1.58.4",
+        "environment": "snowflake"
+      }
+    }
+  ],
+  "version": "1.58.4",
+  "environment": "snowflake"
+}
