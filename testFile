@@ -1,2 +1,6 @@
 from test 1
+<<<<<<< Updated upstream
 again from test 1
+=======
+from home 1
+>>>>>>> Stashed changes
