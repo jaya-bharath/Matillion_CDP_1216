@@ -4056,7 +4056,7 @@
                             "1": {
                               "slot": 1,
                               "type": "STRING",
-                              "value": "###\n# Variables are exported into bash, but should be considered read-only: \n#    echo $myvar\n###\n\n\necho 'version 1'"
+                              "value": "###\n# Variables are exported into bash, but should be considered read-only: \n#    echo $myvar\n###\n\n\necho 'version 2'"
                             }
                           }
                         }
